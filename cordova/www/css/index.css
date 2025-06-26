@@ -1,0 +1,129 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+@font-face {
+    font-family: "Asap";
+    src: url("../font/asap.ttf");
+  }
+
+body {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    background-color:#fff;
+    height:100vh;
+    margin:0px;
+    padding:0px;
+    /* Padding to avoid the "unsafe" areas behind notches in the screen */
+    padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
+    width:100%;
+    font-family: "Asap", sans-serif;
+    font-optical-sizing: auto;
+}
+
+/* Welcome */
+#welcome{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+#welcome .background{
+    background: url(../img/hp/hp.png) no-repeat;
+    padding: 0;
+    height: 43%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    width: 100%;
+}
+#welcome div.container{
+    text-align: center;
+    margin: 80px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+#welcome div.container #welcome {
+    color:#3F414E;
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 0.6rem;
+}
+#welcome div.container .mantra{
+    color: #A1A4B2;
+    font-size: 0.75rem;
+    font-weight: normal;
+    font-style: italic;
+    margin: 20px 0 0 0;
+}
+#welcome div.container .cta{
+    margin: 60px 0 0 0;
+    background-color: #8E97FD;
+    border-radius: 20px;
+    padding:10px 0;
+    color:#F6F1FB;
+}
+
+/** Listing **/
+#listing{
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+
+}
+#listing .header-container{
+    padding:50px 0 0 20px;
+    background: linear-gradient(#FAF8F5, #fff);
+
+}
+#listing .header-container div:nth-child(1){
+    color:#3F414E;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+#listing .header-container div:nth-child(2){
+    color:#3F414E;
+    font-size: 1.3rem;
+    margin:15px 0 0 0;
+}
+#listing .header-container div:nth-child(3){
+    color:#A1A4B2;
+    margin:15px 0 0 0;
+}
+#listing .tile-container{
+}
+#listing .tile-container tile{
+
+}
+/* Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+    .app {
+        background-position:left center;
+        padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
+        margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
+                                      /* offset horizontal: half of image width and text area width */
+    }
+}
+
