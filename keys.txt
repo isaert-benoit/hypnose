@@ -1,0 +1,25 @@
+cordova plugin add cordova-plugin-browsersync-gen2
+cordova serve --live-reload
+
+keytool -v -genkey -v -keystore bensoftware.keystore -alias bensoftware -keyalg RSA -validity 10000
+keytool -v -genkey -v -keystore bensoftware2.keystore -alias bensoftware -keyalg PKCS12 -validity 10000
+
+
+
+cordova run android --release -- --keystore=bensoftware.keystore --storePassword=Cristaline2 --alias=bensoftware --password=Cristaline2 --packageType=apk
+cordova run android --release -- --keystore=bensoftware2.keystore --storePassword=Cristaline2 --alias=bensoftware --password=password --packageType=apk
+
+ cordova build android --release --keystore=pathToKeystore --storePassword=kspassword --alias=aliasName --password=aliasPassword
+
+
+
+// Cle de signature dans le app console
+java -jar pepk.jar --keystore=bensoftware.keystore --alias=bensoftware --output=output.zip --include-cert --rsa-aes-encryption --encryption-key-path=encryption_public_key.pem
+(mot de passe Cristaline2)
+
+ cordova build android --release -- --keystore=bensoftware.keystore --storePassword=Cristaline2 --alias=bensoftware --password=Cristaline2 --packageType=apk
+ 
+ 
+ 
+ 
+
