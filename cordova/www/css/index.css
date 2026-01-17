@@ -39,7 +39,7 @@ body {
     font-family: "Asap", sans-serif;
     font-optical-sizing: auto;
 }
-
+p{margin:0}
 /* Welcome */
 #welcome{
     height: 100%;
@@ -65,15 +65,14 @@ body {
     flex-direction: column;
     width: 80%;
 }
-#welcome div.container #welcome {
+#welcome div.container .welcome {
     color:#3F414E;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: bold;
-    letter-spacing: 0.6rem;
 }
 #welcome div.container .mantra{
     color: #A1A4B2;
-    font-size: 0.75rem;
+    font-size: 1.1rem;
     font-weight: normal;
     font-style: italic;
     margin: 20px 0 0 0;
@@ -84,39 +83,224 @@ body {
     border-radius: 20px;
     padding:10px 0;
     color:#F6F1FB;
+    font-size: 1.2rem;
 }
 
 /** Listing **/
 #listing{
-    display: flex;
-    height: 100%;
+    display: none;
+    min-height: 100%;
     flex-direction: column;
-
+    background: linear-gradient(#FAF8F5, #fff);
+    align-items: center;
 }
 #listing .header-container{
-    padding:50px 0 0 20px;
-    background: linear-gradient(#FAF8F5, #fff);
+    padding: 0 0 20px 0;
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background: #8E97FD;
+    min-height: 75px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+#listing .header-container div{
+    color:white;
+    font-size: 1.2rem;
 
 }
-#listing .header-container div:nth-child(1){
-    color:#3F414E;
-    font-size: 1.5rem;
-    font-weight: bold;
-}
+/*
 #listing .header-container div:nth-child(2){
-    color:#3F414E;
+    color:#A1A4B2;
     font-size: 1.3rem;
     margin:15px 0 0 0;
 }
 #listing .header-container div:nth-child(3){
     color:#A1A4B2;
     margin:15px 0 0 0;
+}*/
+
+/** Listing */
+#listing .playlist-container{
+    margin: 20px auto 0 auto;
+    width: 90%;
+}
+#listing .playlist-container .image{
+    background-size: cover;
+    width: 100%;
+    height: 200px;
+    border-radius: 10px; 
+}
+#listing .playlist-container .title{
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin: 15px 0;
+}
+#listing .playlist-container .description{
+    font-size: .8rem;
+    margin: 15px 0;
+    color: #A1A4B2;
+    letter-spacing: .05rem;
+}
+#listing .playlist-container ul{
+    padding: 0;
+    margin: 0;
+}
+#listing .playlist-container ul li{
+    list-style-type: none;
+    align-items: center;
+    display: flex;
+    border-bottom: 1px solid #E5E5E5;
+    padding: 10px 0 10px 0;
+}
+#listing .playlist-container ul li .btn-play{
+    background: url(../img/player/mini-play-on.png) no-repeat;
+    width: 40px;
+    height: 41px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#listing .playlist-container ul li .text{
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 0 30px;
+}
+#listing .playlist-container ul li .text .title{
+    margin: 0;
+    font-weight: normal;
+    font-size: 1rem;
+}
+#listing .playlist-container ul li .text .duration{
+    font-size: .8rem;
+    color: #A1A4B2;
+    padding: 5px 0 0 0;
+}
+
+
+
+#listing .tile-background-container{
+    margin: -15px 0 0 0;
+    width: 100%;
+    border-radius: 15px;
+    background: white;
+}
+#listing .mantra-container{
+    background: #4AC29A;
+    background: -webkit-linear-gradient(to bottom, #BDFFF3, #4AC29A);
+    /* linear-gradient(to bottom, #e9d3a1, #f0c09a) */
+    /* linear-gradient(to bottom, #c5e3fb, #8ec2e9) */
+    
+    background: linear-gradient(to bottom, #BDFFF3, #4AC29A);
+    height: 300px;
+    width: 90%;
+    margin: 20px auto 0 auto;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: -webkit-linear-gradient(to bottom, #BDFFF3, #4AC29A);
+}
+#listing .mantra-container::before{
+    content: " ";
+    background: #4AC29A;
+    width: 100%;
+    height: 300px;
+    align-items: center;
+    background: url(../img/mantra/bg_bouda.png) no-repeat;
+    background-size: contain;
+    opacity: .5;
+    position: absolute;
+    left: calc(50% - 39%);
+    left: -webkit-calc(50% - 39%);
+}
+#listing .mantra-container .text{
+    color:white;
+    text-align: center;
+    padding: 0 30px;
+    font-size: 1.3rem;
 }
 #listing .tile-container{
+    margin: 20px auto 0 auto;
+    width: 90%;
+    column-count: 2;
 }
-#listing .tile-container tile{
+#listing .tile-container .tile{
+    width: 90%;
+    flex: 40%;
+    background-size: contain;
+    break-inside: avoid;
+    position: relative;
+    margin: 15px 0 0 0 ;
+}
+#listing .tile-container .tile_size_big {
+    height: 184px;
+}
+#listing .tile-container  .tile_size_little{
+    height: 145px;
+}
+#listing .tile-container .tile_size_big .title,#listing .tile-container .tile_size_little .title{
+    font-weight: bold;
+    color: white;
+    position: absolute;
+    bottom: 30px;
+    left: 10px;
+    font-size: 1rem;
+}
+#listing .tile-container .tile_size_big .description, #listing .tile-container .tile_size_little .description{
+    font-weight: normal;
+    color: white;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-size: 0.8rem;
+}
+#listing .tile-container  .tile_size_big.sommeil{
+    background: url(../img/listing/sommeil.png) no-repeat;
+    background-size: contain;
+    margin:0;
+}
+#listing .tile-container  .tile_size_little.regime{
+    background: url(../img/listing/regime.png) no-repeat;
+    background-size: contain;
+}
+#listing .tile-container  .tile_size_little.stress{
+    background: url(../img/listing/stress.png) no-repeat;
+    background-size: contain;
+}
+#listing .tile-container  .tile_size_little.passe{
+    background: url(../img/listing/passe.png) no-repeat;
+    background-size: contain;
+}
+#listing .tile-container  .tile_size_big.fumer{
+    background: url(../img/listing/fumer.png) no-repeat;
+    background-size: contain;
+}
+#listing .tile-container  .tile_size_big.developper{
+    background: url(../img/listing/developper.png) no-repeat;
+    background-size: contain;
+}
+#listing .mantra{
+    background: url(../img/listing/mantra.png) no-repeat;
+    height: 95px;
+    width: 90%;
+    margin: 10px 0 20px 0;
+    border-radius: 10px;
+}
+#listing .mantra .title{
+    margin: 20px 0 0 25px;
+    font-weight: bold;
+    color: #3F414E;
+}
+#listing .mantra .description{
+    margin: 8px 0 0 25px;
+    color: #3F414E;
+    font-style: italic;
+    font-size: 1rem;
+}
 
-}
 /* Landscape layout (with min-width) */
 @media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
     .app {
