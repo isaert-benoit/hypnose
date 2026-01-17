@@ -20,6 +20,11 @@ java -jar pepk.jar --keystore=bensoftware.keystore --alias=bensoftware --output=
  cordova build android --release -- --keystore=bensoftware.keystore --storePassword=Cristaline2 --alias=bensoftware --password=Cristaline2 --packageType=apk
  
  
- 
- 
+ Splash screen
 
+installer via npm : https://github.com/ElRochito/cordova-res?tab=readme-ov-file
+
+et lancer un cordova-res android --skip-config --copy --android-project platforms/android a la racine de cordova
+
+ modifier le fichier /home/benoit/workspace/perso/application/hypnose2025/cordova/platforms/android/app/src/main/res/values/theme.xml et faire pointer le 
+ windowSplashScreenAnimatedIcon vers le bon repertoire
