@@ -10,22 +10,26 @@ var datas = {
                     "1" : {
                         "name" : "ma session 1",
                         "isFree" : 1,
-                        "description" : "Description de la session 1"
+                        "description" : "Description de la session 1",
+                        "src" : "sessions/1_1.ogg"
                     },
                     "2" : {
                         "name" : "ma session 2",
                         "isFree" : 1,
-                        "description" : "Description de la session 2"
+                        "description" : "Description de la session 2",
+                        "src" : "sessions/1_2.ogg"
                     },
                     "3" : {
                         "name" : "ma session 3",
                         "isFree" : 1,
-                        "description" : "Description de la session 3"
+                        "description" : "Description de la session 3",
+                        "src" : "sessions/1_1.ogg"
                     },
                     "4" : {
                         "name" : "ma session 4",
                         "isFree" : 1,
-                        "description" : "Description de la session 4"
+                        "description" : "Description de la session 4",
+                        "src" : "sessions/1_1.ogg"
                     }
                 }
             },
