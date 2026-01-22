@@ -45,17 +45,6 @@
                 <div class="mantra">" Chaque souffle est un nouveau départ "</div>
                 <div class="cta" id="cta">Je commence</div>
             </div>
-            <!--
-                        <div style="margin-top:50px;border:1px solid red;width:200px;height:100px;" data-media_src="1_1.ogg" class="play">PLAY 1</div>
-            <div style="margin-top:50px;border:1px solid red;width:200px;height:100px;" data-media_src="1_2.mp3" class="play">PLAY 2</div>
-            <div style="margin-top:50px;border:1px solid red;width:200px;height:100px;" id="pause">pause</div>
-            <div style="margin-top:50px;border:1px solid red;width:200px;height:100px;" id="stop">Stop</div>
-            <div style="margin-top:50px;border:1px solid red;width:50px;height:50px;" id="rew"><<</div>
-            <div style="margin-top:50px;border:1px solid red;width:50px;height:50px;" id="ff">>></div>
-            <div id="audio_duration">durée</div>
-            <div id="position">position</div>
-            -->
-
         </div>
 
         <!-- Listing categories-->
@@ -70,99 +59,52 @@
         </div>
 
         <!-- Player -->
-        <div id="player" style="display: none;" class="screen">
-            <div class="cta-return-sessions">Retour</div>
+        <div id="player" class="screen" style="display: none;">
+            <div class="cta-return-sessions">← Retour</div>
+            
             <div id="details"></div>
-            <div class="player-control">
-                <div class="cta-play">PLAY</div>
-                <div class="cta-pause" style="display: none;">PAUSE</div>
+            
+            <div class="player-ui">
+                <div id="cta-fav" class="fav-icon">♡</div> </div>
+                <div class="progress-container">
+                    <input type="range" id="seek-slider" min="0" max="100" value="0" step="0.1">
+                    <div class="time-display">
+                        <span id="current-time">0:00</span>
+                        <span id="duration">-:-</span>
+                    </div>
+                </div>
+        
+                <div class="player-control">
+                    <div class="cta-play">PLAY</div>
+                    <div class="cta-pause" style="display: none;">PAUSE</div>
+                </div>
             </div>
+        </div>   
+
+        <!-- Favorites-->
+        <div id="listing_favorites" class="screen" style="display: none;">
+            <h2>Mes sessions favorites</h2>
+            <div id="favorites_list"></div>
         </div>
 
-
-         <!-- <div id="listing2">
-            <div class="header-container">
-                <div>Laissez vous guider</div>
-            </div>
-            <div class="tile-background-container">
-                
-                <div class="playlist-container">
-                    <div class="image" style="background: url('img/listing/sunset.png')">
-                    </div>
-                    <div class="title">Happy morning</div>
-                    <div class="description">sqdlkhqdl lhqsldhqldh jlhql dshjlqdhlqjhdlqhd lh lkhlkhqkljdsh jlkqhd l lhqlsdhqldh qldh qljdhkljqh dljqhd Happy morning</div>
-                    <div class="playlist">
-                        <ul>
-                            <li>
-                                <div class="btn-play"></div>
-                                <div class="text">
-                                    <div class="title">Focus Attention</div>
-                                    <div class="duration">10 MIN</div>
-                                  </div>
-                            </li>
-                            <li>
-                                <div class="btn-play"></div>
-                                <div class="text">
-                                    <div class="title">Focus Attention</div>
-                                    <div class="duration">10 MIN</div>
-                                  </div>
-                            </li>
-                            <li>
-                                <div class="btn-play"></div>
-                                <div class="text">
-                                    <div class="title">Focus Attention</div>
-                                    <div class="duration">10 MIN</div>
-                                  </div>
-                            </li>
-                        </ul>
-                        <div class=""></div>
-                    </div>
+        
+        <!-- Mantras-->
+        <div id="listing_mantras" class="screen" style="display: none;">
+            <div id="mantras-container">
                 </div>
+        </div>
 
-                <div class="mantra-container">
-                    <div class="text">
-                        « Nous devons avoir le courage d'apprendre avec le passé et de ne pas vivre le passé »
-                    </div>
-                </div>
-                <div class="tile-container">
-                    <div class="tile tile_size_big sommeil">
-                        <p class="title">S'endormir</p>
-                        <p class="description">Améliorer son sommeil</p>
-                    </div>
-                    <div class="tile tile_size_little regime">
-                        <p class="title">Perte de poids</p>
-                        <p class="description">Améliorer son sommeil</p>
-                    </div>
-                    <div class="tile tile_size_big fumer">
-                        <p class="title">Arreter de fumer</p>
-                        <p class="description">Améliorer son sommeil</p>
-                    </div>
-     
-                    <div class="tile tile_size_little stress">
-                        <p class="title">Stress</p>
-                        <p class="description">Améliorer son sommeil</p>
-                    </div>
-                    <div class="tile tile_size_big developper">
-                        <p class="title">Se développer</p>
-                        <p class="description">Améliorer son sommeil</p>
-                    </div>
-                    <div class="tile tile_size_little passe">
-                        <p class="title">Gérer son passé</p>
-                        <p class="description">Améliorer son sommeil</p>
-                    </div>
-                </div>
-            </div>
-            <div class="mantra">
-                <p class="title">Mantras</p>
-                <p class="description">Parce qu'une phrase peut tout changer</p>
-            </div>
-         </div> -->
-
-         
+        <!-- Bottom bar menu-->
+        <nav id="main-nav">
+            <div class="nav-item" id="nav-home">🏠<span>Home</span></div>
+            <div class="nav-item" id="nav-favorites">❤️<span>Favoris</span></div>
+            <div class="nav-item" id="nav-mantras">✨<span>Mantras</span></div>
+        </nav>
 
         <script src="cordova.js"></script>
         <script src="js/data.js"></script>
         <script src="js/index.js"></script>
+        <script src="js/mantras.js"></script>
         <script src="js/jquery.js"></script>
     </body>
 </html>

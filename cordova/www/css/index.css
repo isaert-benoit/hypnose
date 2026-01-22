@@ -1,313 +1,114 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-* {
-    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
-}
-
-@font-face {
-    font-family: "Asap";
-    src: url("../font/asap.ttf");
-  }
-
 body {
-    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
-    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
-    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-    background-color:#fff;
-    height:100vh;
-    margin:0px;
-    padding:0px;
-    /* Padding to avoid the "unsafe" areas behind notches in the screen */
-    padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
-    width:100%;
-    font-family: "Asap", sans-serif;
-    font-optical-sizing: auto;
-}
-p{margin:0}
-/* Welcome */
-#welcome{
-    height: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-#welcome .background{
-    background: url(../img/hp/hp.png) no-repeat;
-    padding: 0;
-    height: 43%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-size: cover;
-    width: 100%;
-}
-#welcome div.container{
-    text-align: center;
-    margin: 80px 0 0 0;
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-}
-#welcome div.container .welcome {
-    color:#3F414E;
-    font-size: 1.8rem;
-    font-weight: bold;
-}
-#welcome div.container .mantra{
-    color: #A1A4B2;
-    font-size: 1.1rem;
-    font-weight: normal;
-    font-style: italic;
-    margin: 20px 0 0 0;
-}
-#welcome div.container .cta{
-    margin: 60px 0 0 0;
-    background-color: #8E97FD;
-    border-radius: 20px;
-    padding:10px 0;
-    color:#F6F1FB;
-    font-size: 1.2rem;
-}
-
-/** Listing **/
-#listing{
-    display: none;
-    min-height: 100%;
-    flex-direction: column;
-    background: linear-gradient(#FAF8F5, #fff);
-    align-items: center;
-}
-#listing .header-container{
-    padding: 0 0 20px 0;
-    align-items: flex-start;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    background: #8E97FD;
-    min-height: 75px;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-}
-#listing .header-container div{
-    color:white;
-    font-size: 1.2rem;
-
-}
-/*
-#listing .header-container div:nth-child(2){
-    color:#A1A4B2;
-    font-size: 1.3rem;
-    margin:15px 0 0 0;
-}
-#listing .header-container div:nth-child(3){
-    color:#A1A4B2;
-    margin:15px 0 0 0;
-}*/
-
-/** Listing */
-#listing .playlist-container{
-    margin: 20px auto 0 auto;
-    width: 90%;
-}
-#listing .playlist-container .image{
-    background-size: cover;
-    width: 100%;
-    height: 200px;
-    border-radius: 10px; 
-}
-#listing .playlist-container .title{
-    font-size: 1.3rem;
-    font-weight: bold;
-    margin: 15px 0;
-}
-#listing .playlist-container .description{
-    font-size: .8rem;
-    margin: 15px 0;
-    color: #A1A4B2;
-    letter-spacing: .05rem;
-}
-#listing .playlist-container ul{
-    padding: 0;
     margin: 0;
-}
-#listing .playlist-container ul li{
-    list-style-type: none;
-    align-items: center;
-    display: flex;
-    border-bottom: 1px solid #E5E5E5;
-    padding: 10px 0 10px 0;
-}
-#listing .playlist-container ul li .btn-play{
-    background: url(../img/player/mini-play-on.png) no-repeat;
-    width: 40px;
-    height: 41px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-#listing .playlist-container ul li .text{
-    display: flex;
-    flex-direction: column;
-    margin: 0 0 0 30px;
-}
-#listing .playlist-container ul li .text .title{
-    margin: 0;
-    font-weight: normal;
-    font-size: 1rem;
-}
-#listing .playlist-container ul li .text .duration{
-    font-size: .8rem;
-    color: #A1A4B2;
-    padding: 5px 0 0 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    /* Ton dégradé inspiré de l'image YouTube */
+    background: linear-gradient(180deg, #1d5b63 0%, #101a4b 100%) no-repeat fixed;
+    color: white;
+    min-height: 100vh;
 }
 
+.screen {
+    padding: 20px;
+    animation: fadeIn 0.3s ease-in;
+}
 
-
-#listing .tile-background-container{
-    margin: -15px 0 0 0;
-    width: 100%;
+.card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
     border-radius: 15px;
-    background: white;
+    padding: 20px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
-#listing .mantra-container{
-    background: #4AC29A;
-    background: -webkit-linear-gradient(to bottom, #BDFFF3, #4AC29A);
-    /* linear-gradient(to bottom, #e9d3a1, #f0c09a) */
-    /* linear-gradient(to bottom, #c5e3fb, #8ec2e9) */
-    
-    background: linear-gradient(to bottom, #BDFFF3, #4AC29A);
-    height: 300px;
-    width: 90%;
-    margin: 20px auto 0 auto;
-    border-radius: 10px;
+
+.cta-play {
+    background: white;
+    color: #101a4b;
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.progress-container {
+    width: 80%;
+    margin: 30px auto;
+}
+
+#seek-slider {
+    width: 100%;
+    cursor: pointer;
+    accent-color: #ffffff; /* Curseur blanc sur fond dégradé */
+}
+
+.time-display {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    opacity: 0.7;
+    margin-top: 5px;
+}
+
+#main-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background: rgba(16, 26, 75, 0.95);
+    backdrop-filter: blur(10px);
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background: -webkit-linear-gradient(to bottom, #BDFFF3, #4AC29A);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    z-index: 1000;
 }
-#listing .mantra-container::before{
-    content: " ";
-    background: #4AC29A;
+.nav-item { font-size: 10px; text-align: center; color: white; cursor: pointer; }
+.nav-item span { display: block; font-size: 10px; }
+.fav-icon { font-size: 30px; color: #ff4d4d; cursor: pointer; }
+
+
+#listing_mantras {
+    padding: 0; /* On prend tout l'écran */
+    height: calc(100vh - 60px); /* Taille écran moins le menu */
+    overflow: hidden;
+}
+
+#mantras-container {
+    height: 100%;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory; /* Force l'aimant vertical */
+    scrollbar-width: none; /* Cache la scrollbar (Firefox) */
+    -webkit-overflow-scrolling: touch; /* Optimise le scroll tactile sur iOS */
+}
+
+#mantras-container::-webkit-scrollbar { display: none; } /* Cache la scrollbar (Chrome/Safari) */
+
+.mantra-card {
+    height: 100%;
     width: 100%;
-    height: 300px;
+    scroll-snap-align: start; /* Aligne le début du bloc sur le haut */
+    scroll-snap-stop: always;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    background: url(../img/mantra/bg_bouda.png) no-repeat;
-    background-size: contain;
-    opacity: .5;
-    position: absolute;
-    left: calc(50% - 39%);
-    left: -webkit-calc(50% - 39%);
-}
-#listing .mantra-container .text{
-    color:white;
     text-align: center;
-    padding: 0 30px;
-    font-size: 1.3rem;
+    padding: 40px;
+    box-sizing: border-box;
 }
-#listing .tile-container{
-    margin: 20px auto 0 auto;
-    width: 90%;
-    column-count: 2;
-}
-#listing .tile-container .tile{
-    width: 90%;
-    flex: 40%;
-    background-size: contain;
-    break-inside: avoid;
-    position: relative;
-    margin: 15px 0 0 0 ;
-}
-#listing .tile-container .tile_size_big {
-    height: 184px;
-}
-#listing .tile-container  .tile_size_little{
-    height: 145px;
-}
-#listing .tile-container .tile_size_big .title,#listing .tile-container .tile_size_little .title{
-    font-weight: bold;
-    color: white;
-    position: absolute;
-    bottom: 30px;
-    left: 10px;
-    font-size: 1rem;
-}
-#listing .tile-container .tile_size_big .description, #listing .tile-container .tile_size_little .description{
-    font-weight: normal;
-    color: white;
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    font-size: 0.8rem;
-}
-#listing .tile-container  .tile_size_big.sommeil{
-    background: url(../img/listing/sommeil.png) no-repeat;
-    background-size: contain;
-    margin:0;
-}
-#listing .tile-container  .tile_size_little.regime{
-    background: url(../img/listing/regime.png) no-repeat;
-    background-size: contain;
-}
-#listing .tile-container  .tile_size_little.stress{
-    background: url(../img/listing/stress.png) no-repeat;
-    background-size: contain;
-}
-#listing .tile-container  .tile_size_little.passe{
-    background: url(../img/listing/passe.png) no-repeat;
-    background-size: contain;
-}
-#listing .tile-container  .tile_size_big.fumer{
-    background: url(../img/listing/fumer.png) no-repeat;
-    background-size: contain;
-}
-#listing .tile-container  .tile_size_big.developper{
-    background: url(../img/listing/developper.png) no-repeat;
-    background-size: contain;
-}
-#listing .mantra{
-    background: url(../img/listing/mantra.png) no-repeat;
-    height: 95px;
-    width: 90%;
-    margin: 10px 0 20px 0;
-    border-radius: 10px;
-}
-#listing .mantra .title{
-    margin: 20px 0 0 25px;
-    font-weight: bold;
-    color: #3F414E;
-}
-#listing .mantra .description{
-    margin: 8px 0 0 25px;
-    color: #3F414E;
+
+.mantra-text {
+    font-size: 24px;
+    font-weight: 300;
     font-style: italic;
-    font-size: 1rem;
+    line-height: 1.4;
+    margin-bottom: 20px;
 }
 
-/* Landscape layout (with min-width) */
-@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
-    .app {
-        background-position:left center;
-        padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
-        margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
-                                      /* offset horizontal: half of image width and text area width */
-    }
+.mantra-theme {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.6;
 }
-
