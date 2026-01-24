@@ -1,19 +1,25 @@
 const App = {
     currentCategory: null,
     currentSession: null,
-    audioPlayer: new Audio(),
+    audioPlayer: null, // Sera soit un new Audio() soit un new Media()
+    isNative: false,   // Pour savoir si on utilise le plugin Cordova
     favorites: JSON.parse(localStorage.getItem('hypno_favs')) || [],
     previousScreen: 'listing_categories',
     isDragging: false,
+    isSeeking: false,
 
     init: function() {
+        // Détecter si on est sur mobile avec le plugin Media disponible
+        this.isNative = (typeof Media !== "undefined");
+        
         this.renderCategories();
         this.bindEvents();
-        this.setupAudioListeners();
-        this.setupProgressListeners();
         this.bindNavEvents();
         this.renderMantras();
         this.bindPlayerEvents();
+        
+        // Timer pour l'update du slider (nécessaire pour le plugin Media)
+        setInterval(() => this.updateProgressBar(), 1000);
     },
 
     // 1. Rendu des catégories
@@ -90,65 +96,106 @@ const App = {
         this.switchScreen('listing_sessions');
     },
 
+    updateProgressBar: function() {
+        if (!this.audioPlayer || this.isDragging) return;
+
+        if (this.isNative) {
+            // Logique Cordova Media
+            this.audioPlayer.getCurrentPosition((pos) => {
+                const dur = this.audioPlayer.getDuration();
+                if (pos >= 0 && dur > 0) {
+                    this.updateUI(pos, dur);
+                }
+            });
+        } else {
+            // Logique HTML5 classique
+            if (!isNaN(this.audioPlayer.duration)) {
+                this.updateUI(this.audioPlayer.currentTime, this.audioPlayer.duration);
+            }
+        }
+    },
+
+    updateUI: function(current, duration) {
+        const pct = (current / duration) * 100;
+        $('#seek-slider').val(pct);
+        $('#current-time').text(this.formatTime(current));
+        $('#duration').text(this.formatTime(duration));
+    },
+
     showPlayer: function(sessionId, fromScreen) {
-
-        // Handle previous cta
+        const self = this;
         this.previousScreen = fromScreen;
-
-        // On récupère la session visée
         const targetSession = this.currentCategory.sessions[sessionId];
 
-        // LOGIQUE CRUCIALE : On vérifie si c'est une nouvelle session
         if (this.currentSessionId !== sessionId) {
+            // Nettoyage de l'ancien player
+            if (this.audioPlayer) {
+                this.isNative ? this.audioPlayer.release() : this.audioPlayer.pause();
+            }
+
             this.currentSession = targetSession;
             this.currentSessionId = sessionId;
-            
-            // On ne change la source que si c'est une nouvelle piste
-            if(this.currentSession.src) {
-                this.audioPlayer.src = this.currentSession.src;
-                this.audioPlayer.load(); 
+            const fileName = this.currentSession.src || this.currentSession.file;
+
+            if (fileName) {
+                const fullPath = this.getPath() + fileName;
+
+                if (this.isNative) {
+                    // VERSION MOBILE (PLUGIN MEDIA)
+                    this.audioPlayer = new Media(fullPath, 
+                        () => { self.mediaStatus = 4; self.updatePlayerButtons(); }, // Terminé
+                        (err) => console.log("Erreur Media", err),
+                        (status) => { 
+                            self.mediaStatus = status; // On stocke le statut (2 = playing, 3 = paused)
+                            self.updatePlayerButtons(); 
+                        }
+                    );
+                } else {
+                    // VERSION PC (AUDIO CLASSIQUE)
+                    this.audioPlayer = new Audio(fullPath);
+                }
+                
+                this.audioPlayer.play(); // Lancement pour charger les metas
+                setTimeout(() => { this.audioPlayer.pause(); this.updatePlayerButtons(); }, 150);
             }
         }
 
-        // Mise à jour de l'UI (Détails de la session)
-        $('#details').html(`
-            <div class="player-view">
-                <h2>${this.currentSession.name}</h2>
-                <p>${this.currentSession.description}</p>
-            </div>
-        `);
-
+        $('#details').html(`<h2>${this.currentSession.name}</h2><p>${this.currentSession.description || ''}</p>`);
         this.updateFavUI();
-
-        // On ajuste l'état des boutons Play/Pause selon si l'audio tourne déjà
         this.updatePlayerButtons();
         this.switchScreen('player');
     },
 
+    updatePlayerButtons: function() {
+        let isPlaying = false;
+    
+        if (this.isNative) {
+            // Status 2 correspond à "Playing" dans le plugin Cordova Media
+            isPlaying = (this.mediaStatus === 2);
+        } else {
+            // Logique PC classique
+            isPlaying = this.audioPlayer && !this.audioPlayer.paused;
+        }
+    
+        if (isPlaying) {
+            $('.cta-play').hide();
+            $('.cta-pause').show();
+        } else {
+            $('.cta-play').show();
+            $('.cta-pause').hide();
+        }
+    },
+
     setupProgressListeners: function() {
-        const slider = $('#seek-slider');
-        
-        // Met à jour la barre pendant la lecture
-        this.audioPlayer.ontimeupdate = () => {
-            const val = (this.audioPlayer.currentTime / this.audioPlayer.duration) * 100;
-            slider.val(val || 0);
-            $('#current-time').text(this.formatTime(this.audioPlayer.currentTime));
-        };
-    
-        // Quand on charge une piste, on affiche la durée totale
+        // On ne met rien ici qui écoute le 'input' ou 'change' du slider
+        // car bindPlayerEvents s'en occupe déjà de manière sécurisée.
         this.audioPlayer.onloadedmetadata = () => {
-            $('#duration').text(this.formatTime(this.audioPlayer.duration));
+            this.updateTimerDisplay();
         };
-    
-        // Quand l'utilisateur déplace le curseur
-        slider.on('input', () => {
-            const time = this.audioPlayer.duration * (slider.val() / 100);
-            this.audioPlayer.currentTime = time;
-        });
     },
     
     formatTime: function(seconds) {
-        if (isNaN(seconds)) return "00:00";
+        if (seconds < 0 || isNaN(seconds)) return "00:00";
         const min = Math.floor(seconds / 60);
         const sec = Math.floor(seconds % 60);
         return (min < 10 ? "0" + min : min) + ":" + (sec < 10 ? "0" + sec : sec);
@@ -157,44 +204,34 @@ const App = {
     bindPlayerEvents: function() {
         const self = this;
         const seekSlider = $('#seek-slider');
-    
-        // 1. Début du mouvement (Souris ou Doigt)
-        seekSlider.on('mousedown touchstart', function() {
-            self.isDragging = true; 
-            console.log("Mouvement commencé - Mise à jour auto stoppée");
-        });
-    
-        // 2. Fin du mouvement (On utilise 'input' pour plus de réactivité sur PC)
-        seekSlider.on('change', function() {
-            self.isDragging = false;
-            const seekTo = self.audioPlayer.duration * (seekSlider.val() / 100);
-            if (!isNaN(seekTo)) {
-                self.audioPlayer.currentTime = seekTo;
-            }
-            console.log("Mouvement terminé - Audio repositionné");
-        });
-    
-        // 3. Mise à jour automatique durant la lecture
-        this.audioPlayer.ontimeupdate = function() {
-            // Si l'utilisateur n'est pas en train de glisser le curseur
-            if (!self.isDragging) {
-                const percentage = (self.audioPlayer.currentTime / self.audioPlayer.duration) * 100;
-                $('#seek-slider').val(percentage || 0);
+
+        seekSlider.on('touchstart mousedown', () => { this.isDragging = true; });
+
+        seekSlider.on('touchend mouseup', function() {
+            if (self.isDragging && self.audioPlayer) {
+                const val = parseFloat($(this).val());
                 
-                // On met à jour ton affichage textuel "current-time"
-                self.updateTimerDisplay();
+                if (self.isNative) {
+                    // SEEK NATIVE (Millisecondes)
+                    const duration = self.audioPlayer.getDuration();
+                    if (duration > 0) {
+                        self.audioPlayer.seekTo((val / 100) * duration * 1000);
+                    }
+                } else {
+                    // SEEK PC (Secondes)
+                    const duration = self.audioPlayer.duration;
+                    if (duration > 0) {
+                        self.audioPlayer.currentTime = (val / 100) * duration;
+                    }
+                }
+                setTimeout(() => { self.isDragging = false; }, 500);
             }
-        };
+        });
     },
 
     updateTimerDisplay: function() {
-        // On formate le temps actuel
         const current = this.formatTime(this.audioPlayer.currentTime);
-        
-        // On l'injecte dans ton élément existant
         $('#current-time').text(current); 
-        
-        // Si tu as aussi un élément pour la durée totale (ex: #duration)
         if (!isNaN(this.audioPlayer.duration)) {
             const total = this.formatTime(this.audioPlayer.duration);
             $('#duration').text(total);
@@ -207,23 +244,40 @@ const App = {
     },
 
     updatePlayerButtons: function() {
-        if (!this.audioPlayer.paused) {
-            $('.cta-play').hide();
-            $('.cta-pause').show();
+        // Sur le plugin Media, il faut parfois ruser pour savoir si ça joue
+        let isPaused = true;
+        if (this.isNative) {
+            // Status 2 = Playing dans le plugin Media
+            isPaused = (this.mediaStatus !== 2);
         } else {
-            $('.cta-play').show();
-            $('.cta-pause').hide();
+            isPaused = this.audioPlayer ? this.audioPlayer.paused : true;
+        }
+
+        if (!isPaused) {
+            $('.cta-play').hide(); $('.cta-pause').show();
+        } else {
+            $('.cta-play').show(); $('.cta-pause').hide();
         }
     },
 
     playAudio: function() {
-        this.audioPlayer.play();
-        this.updatePlayerButtons();
+        if (this.audioPlayer) {
+            this.audioPlayer.play();
+            if (this.isNative) {
+                this.mediaStatus = 2; // On force l'état "Playing" pour l'UI
+            }
+            this.updatePlayerButtons();
+        }
     },
-
+    
     pauseAudio: function() {
-        this.audioPlayer.pause();
-        this.updatePlayerButtons();
+        if (this.audioPlayer) {
+            this.audioPlayer.pause();
+            if (this.isNative) {
+                this.mediaStatus = 3; // On force l'état "Paused" pour l'UI
+            }
+            this.updatePlayerButtons();
+        }
     },
 
     switchScreen: function(screenId) {
@@ -317,6 +371,11 @@ const App = {
         console.log(screenId);
         $('#' + screenId).fadeIn();
     },
+
+    getPath: function() {
+        if (!this.isNative) return "";
+        return (device.platform === "Android") ? "file:///android_asset/www/" : "";
+    }
 };
 
 // Initialisation Cordova
