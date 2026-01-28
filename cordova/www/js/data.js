@@ -48,8 +48,8 @@ var datas = {
                 "name": "Arrêter de fumer",
                 "description": "Programme complet pour se libérer du tabac.",
                 "sessions": {
-                    "1": { "id": "arreter-fumer-s1", "name": "Séance 1", "duration": 30, "src": "sessions/4_1.ogg", "description": "Véritable coaching pour arrêter le tabac, avec une vidéo d'hypnose pour se motiver à arrêter de fumer, à faire pendant deux à quatre semaines, en fonction de chacun." },
-                    "2": { "id": "arreter-fumer-s2", "name": "Séance 2", "duration": 25, "src": "sessions/4_2.ogg", "description": "Cette vidéo est destinée aux personnes souhaitant arrêter de fumer.Pour un effet maximal, il est conseillé de l'écouter avec des écouteurs" },
+                    "1": { "id": "arreter-fumer-s1", "name": "Séance 1", "duration": 34, "src": "sessions/4_1.ogg", "description": "Véritable coaching pour arrêter le tabac, avec une vidéo d'hypnose pour se motiver à arrêter de fumer, à faire pendant deux à quatre semaines, en fonction de chacun." },
+                    "2": { "id": "arreter-fumer-s2", "name": "Séance 2", "duration": 15, "src": "sessions/4_2.ogg", "description": "Cette vidéo est destinée aux personnes souhaitant arrêter de fumer.Pour un effet maximal, il est conseillé de l'écouter avec des écouteurs" },
                     "3": { "id": "arreter-fumer-s3", "name": "Séance 3", "duration": 28, "src": "sessions/4_3.ogg", "description": "Séance d'hypnose pour se détacher de l'addiction au tabac et a la nicotine et arrêter de fumer" }
                 }
             },
@@ -84,8 +84,11 @@ var datas = {
                 "name": "Développement de soi",
                 "description": "Atteignez votre plein potentiel.",
                 "sessions": {
-                    "1": { "id": "confiance-en-soi", "name": "Confiance en soi", "duration": 35, "src": "sessions/3_1.ogg", "description": "Développez une assurance inébranlable et apprenez à croire en vos capacités dans tous les domaines de votre vie." },
-                    "2": { "id": "parler-en-public", "name": "Parler en public", "duration": 28, "src": "sessions/3_2.ogg", "description": "Maîtrisez votre stress et devenez un orateur captivant, capable de transmettre ses idées avec clarté et sérénité." }
+                    "1": { "id": "developper-intuition", "name": "Développer son Intuition", "duration": 23, "src": "sessions/3_.ogg", "description": "Ceci est un exemple d'induction hypnotique d'Hypnose Humaniste.L'introduction est suivie d'un exemple d'intervention thérapeutique symbolique simple." },
+                    "2": { "id": "histoire-vie", "name": "La Grande Histoire de la Vie", "duration": 46, "src": "sessions/3_.ogg", "description": "Ce n'est pas un type de séance à écouter tous les jours. Réservez-vous ce 'cadeau' pour des moments privilégiés ou si vous avez besoin de vous remonter le moral, de 'retrouver la foi'. Le piège a éviter est de vouloir ré-écouter la séance, encore et encore, parce qu'au fond de soi, on doute de réussir." },
+                    "3": { "id": "la-conscience", "name": "La Conscience", "duration": 39, "src": "sessions/3_.ogg", "description": "Ceci n'est pas une induction, mais la version audio d'un article d'Olivier Lockert, très apprécié, du site Hypnose-Humaniste.com" },
+                    "4": { "id": "createur-de-realite", "name": "Créateur de Réalité", "duration": 46, "src": "sessions/3_.ogg", "description": "A nouveau une 'version audio', cette fois-ci d'un conte destiné à présenter la vision de la Vie de l'Hypnose Humaniste, de ses origines et ses buts, à son devenir." },
+                    "5": { "id": "expansion-de-conscience", "name": "Expansion de conscience", "duration": 31, "src": "sessions/3_.ogg", "description": "Le domaine de l'intuition est bien plus vaste qu'il n'y parait à première vue. Les personnes en meilleure santé vivent et se nourrissent intuitivement mieux que les autres. Elles ne le font pas exprès. Un enfant mince n'aime pas les sauces, par exemple. Il ne l'a pas appris, il ne se force pas. Il est 'comme ça'… C'est la même chose pour une personne à qui 'tout réussi', qui a 'de la chance' : elle semble savoir à chaque fois quoi faire, et pourtant ce n'est ni conscient, ni volontaire… C'est cela, l'intuition : le ressenti profond qui guide vos pas, souvent même sans que vous ne le sachiez. C'est ce qu'il y a de plus important pour vivre bien et en bonne santé, pour réussir sa vie et suivre 'le chemin qui a du coeur'." }
                 }
             }
         }
