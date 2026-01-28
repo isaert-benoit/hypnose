@@ -86,7 +86,7 @@ const App = {
 
         $.each(this.currentCategory.sessions, (id, session) => {
             container.append(`
-                <div class="card session-item" data-id="${id}">
+                <div class="card session-item" data-id="${session.id}">
                     <h4>${session.name}</h4>
                     <p>${session.description}</p>
                 </div>
@@ -122,12 +122,24 @@ const App = {
         $('#duration').text(this.formatTime(duration));
     },
 
+    // Fonction pour trouver une session par son ID unique n'importe où dans le JSON
+    getSessionById: function(id) {
+        let found = null;
+        $.each(datas.fr.categories, (catKey, cat) => {
+            $.each(cat.sessions, (sessKey, sess) => {
+                if (sess.id == id) { found = sess; return false; }
+            });
+            if (found) return false;
+        });
+        return found;
+    },
+
     showPlayer: function(sessionId, fromScreen) {
         const self = this;
         this.previousScreen = fromScreen;
-        const targetSession = this.currentCategory.sessions[sessionId];
+        const targetSession = this.getSessionById(sessionId);
 
-        if (this.currentSessionId !== sessionId) {
+        if (targetSession && this.currentSessionId !== sessionId) {
             // Nettoyage de l'ancien player
             if (this.audioPlayer) {
                 this.isNative ? this.audioPlayer.release() : this.audioPlayer.pause();
@@ -307,28 +319,30 @@ const App = {
 
     toggleFavorite: function() {
         const id = this.currentSessionId;
+        // On cherche si l'ID est déjà dans le tableau d'objets favoris
         const index = this.favorites.findIndex(f => f.id === id);
-
-        if (index > -1) {
-            this.favorites.splice(index, 1); // Enlever
-        } else {
-            // On stocke l'ID ET les infos pour pouvoir les afficher dans la liste favoris
+    
+        if (index === -1) {
+            // AJOUT : On stocke l'ID et les infos pour l'affichage
             this.favorites.push({
                 id: id,
                 name: this.currentSession.name,
-                description: this.currentSession.description,
-                category: this.currentCategory.id // On garde la catégorie pour pouvoir y retourner
+                description: this.currentSession.description
             });
+        } else {
+            // SUPPRESSION : On retire l'élément à cet index
+            this.favorites.splice(index, 1);
         }
-
+    
+        // SAUVEGARDE dans le téléphone
         localStorage.setItem('hypno_favs', JSON.stringify(this.favorites));
+        
         this.updateFavUI();
     },
 
     updateFavUI: function() {
-        // On vérifie si l'ID de la session actuelle est présent dans le tableau des favoris
-        // On utilise .toString() par sécurité pour être sûr de comparer des choux avec des choux
-        const isFav = this.favorites.some(f => f.id.toString() === this.currentSessionId.toString());
+        const id = this.currentSessionId;
+        const isFav = this.favorites.some(f => f.id === id);
         
         if (isFav) {
             $('#cta-fav').html('❤️').addClass('active');
