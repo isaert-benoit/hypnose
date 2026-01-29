@@ -102,23 +102,23 @@
             <div class="nav-item" id="nav-favorites">❤️<span>Favoris</span></div>
             <div class="nav-item" id="nav-mantras">✨<span>Mantras</span></div>
         </nav> -->
-        <nav class="bottom-nav">
-            <a href="#" class="nav-item active" onclick="App.switchScreen('listing_categories')">
+        <nav class="bottom-nav"> 
+            <div class="nav-item active" data-screen="listing_categories">
                 <i class="fa-solid fa-house"></i>
                 <span>Accueil</span>
-            </a>
-            <a href="#" class="nav-item" onclick="App.switchScreen('listing_favorites')">
+            </div>
+            <div class="nav-item" data-screen="listing_favorites">
                 <i class="fas fa-heart"></i>
                 <span>Favoris</span>
-            </a>
-            <a href="#" class="nav-item" onclick="App.switchScreen('listing_mantras')">
+            </div>
+            <div class="nav-item" data-screen="listing_mantras">
                 <i class="fa-solid fa-yin-yang"></i>
                 <span>Mantras</span>
-            </a>
-            <a href="#" class="nav-item" onclick="App.switchScreen('listing_mantras')">
+            </div>
+            <div class="nav-item" data-screen="listing_mantras">
                 <i class="fa-solid fa-bars"></i>
                 <span>Menu</span>
-            </a>
+            </div>
         </nav>
 
         <script src="cordova.js"></script>

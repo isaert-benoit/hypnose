@@ -62,6 +62,22 @@ const App = {
         $('.cta-pause').click(() => self.pauseAudio());
 
         $('#nav-mantras').click(() => self.switchScreen('listing_mantras'));
+
+        $(document).on('click', '.nav-item', function(e) {
+            e.preventDefault();
+            
+            // On récupère l'ID de l'écran stocké dans data-screen
+            var targetScreen = $(this).data('screen');
+            
+            console.log("Tentative de switch vers : " + targetScreen);
+            
+            // On appelle la fonction de l'app
+            if (typeof App !== 'undefined' && App.switchScreen) {
+                App.switchScreen(targetScreen);
+            } else {
+                console.error("L'objet 'app' est introuvable au moment du clic.");
+            }
+        });
     },
 
     shuffleArray: function(array) {
