@@ -8,6 +8,10 @@ body {
     min-height: 100vh;
 }
 
+main, .page-content {
+    padding-bottom: 85px; /* Hauteur du menu + un peu de marge */
+}
+
 .screen {
     padding: 20px;
     animation: fadeIn 0.3s ease-in;
@@ -50,24 +54,72 @@ body {
     margin-top: 5px;
 }
 
-#main-nav {
+/** MENU bas */
+.bottom-nav {
     position: fixed;
     bottom: 0;
+    left: 0;
     width: 100%;
-    height: 60px;
-    background: rgba(16, 26, 75, 0.95);
-    backdrop-filter: blur(10px);
+    height: 70px;
+    background-color: #ffffff;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    border-top: 1px solid rgba(255,255,255,0.1);
+    /* Arrondis uniquement sur les coins supérieurs */
+    border-radius: 40px 40px 0 0; 
+    /* Ombre portée vers le haut pour donner de la profondeur */
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.08); 
     z-index: 1000;
+    padding-bottom: env(safe-area-inset-bottom); /* Important pour iPhone X+ */
 }
-.nav-item { font-size: 10px; text-align: center; color: white; cursor: pointer; }
-.nav-item span { display: block; font-size: 10px; }
-.fav-icon { font-size: 30px; color: #ff4d4d; cursor: pointer; }
+
+.nav-item {
+    flex: 1; /* Chaque item prend la même place */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #b0bec5;
+    transition: all 0.2s ease-in-out;
+}
+
+.nav-item i {
+    font-size: 1.3rem;
+    margin-bottom: 4px;
+    opacity: 0.6;
+}
+
+.nav-item.active i {
+    opacity: 1; /* Icône bien brillante quand sélectionnée */
+}
 
 
+
+.nav-item span {
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* État actif : on change la couleur et on peut ajouter une petite barre au dessus */
+.nav-item.active {
+    color: #4CAF50; /* Ton vert bien-être */
+}
+
+/* Optionnel : petite barre de couleur au-dessus de l'icône active */
+.nav-item.active::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 20px;
+    height: 3px;
+    background: #4CAF50;
+    border-radius: 0 0 5px 5px;
+}
+
+
+/** Mantras **/
 #listing_mantras {
     padding: 0; /* On prend tout l'écran */
     height: calc(100vh - 60px); /* Taille écran moins le menu */
@@ -82,12 +134,12 @@ body {
     -webkit-overflow-scrolling: touch; /* Optimise le scroll tactile sur iOS */
 }
 
-#mantras-container::-webkit-scrollbar { display: none; } /* Cache la scrollbar (Chrome/Safari) */
+#mantras-container::-webkit-scrollbar { display: none; } 
 
 .mantra-card {
     height: 100%;
     width: 100%;
-    scroll-snap-align: start; /* Aligne le début du bloc sur le haut */
+    scroll-snap-align: start; 
     scroll-snap-stop: always;
     display: flex;
     flex-direction: column;
@@ -99,7 +151,7 @@ body {
 }
 
 .mantra-text {
-    font-size: 24px;
+    font-size: 26px;
     font-weight: 300;
     font-style: italic;
     line-height: 1.4;

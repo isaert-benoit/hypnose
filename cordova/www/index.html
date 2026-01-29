@@ -34,6 +34,8 @@
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
         <meta name="color-scheme" content="light dark">
         <link rel="stylesheet" href="css/index.css">
+        <link rel="stylesheet" href="css/all.min.css">
+        
         <title>Hello World</title>
     </head>
     <body>
@@ -95,10 +97,28 @@
         </div>
 
         <!-- Bottom bar menu-->
-        <nav id="main-nav">
+        <!-- <nav id="main-nav">
             <div class="nav-item" id="nav-home">🏠<span>Home</span></div>
             <div class="nav-item" id="nav-favorites">❤️<span>Favoris</span></div>
             <div class="nav-item" id="nav-mantras">✨<span>Mantras</span></div>
+        </nav> -->
+        <nav class="bottom-nav">
+            <a href="#" class="nav-item active" onclick="App.switchScreen('listing_categories')">
+                <i class="fa-solid fa-house"></i>
+                <span>Accueil</span>
+            </a>
+            <a href="#" class="nav-item" onclick="App.switchScreen('listing_favorites')">
+                <i class="fas fa-heart"></i>
+                <span>Favoris</span>
+            </a>
+            <a href="#" class="nav-item" onclick="App.switchScreen('listing_mantras')">
+                <i class="fa-solid fa-yin-yang"></i>
+                <span>Mantras</span>
+            </a>
+            <a href="#" class="nav-item" onclick="App.switchScreen('listing_mantras')">
+                <i class="fa-solid fa-bars"></i>
+                <span>Menu</span>
+            </a>
         </nav>
 
         <script src="cordova.js"></script>

@@ -15,7 +15,6 @@ const App = {
         this.renderCategories();
         this.bindEvents();
         this.bindNavEvents();
-        this.renderMantras();
         this.bindPlayerEvents();
         
         // Timer pour l'update du slider (nécessaire pour le plugin Media)
@@ -65,15 +64,23 @@ const App = {
         $('#nav-mantras').click(() => self.switchScreen('listing_mantras'));
     },
 
+    shuffleArray: function(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    },
+
     renderMantras: function() {
         const container = $('#mantras-container');
         container.empty();
-    
-        mantrasData.forEach(m => {
+        let shuffleMantrasData = this.shuffleArray(mantrasData);
+   
+        shuffleMantrasData.forEach(m => {
             container.append(`
                 <div class="mantra-card">
                     <div class="mantra-text">"${m.text}"</div>
-                    <div class="mantra-theme">${m.theme}</div>
                 </div>
             `);
         });
@@ -250,11 +257,6 @@ const App = {
         }
     },
 
-    switchScreen: function(screenId) {
-        $('.screen').hide(); // On cache tout (ajoute class="screen" à tes divs parents)
-        $('#' + screenId).fadeIn();
-    },
-
     updatePlayerButtons: function() {
         // Sur le plugin Media, il faut parfois ruser pour savoir si ça joue
         let isPaused = true;
@@ -290,11 +292,6 @@ const App = {
             }
             this.updatePlayerButtons();
         }
-    },
-
-    switchScreen: function(screenId) {
-        $('.screen').hide();
-        $('#' + screenId).fadeIn();
     },
 
     setupAudioListeners: function() {
@@ -377,13 +374,36 @@ const App = {
             App.showPlayer(sessId, 'listing_favorites');
         });
 
-        this.switchScreen('listing_favorites');
     },
 
-    switchScreen: function(screenId) {
+    switchScreen: function(screenId, data) {
+        const self = this;
+
+        // 1. On cache tout et on affiche l'écran demandé
         $('.screen').hide();
-        console.log(screenId);
-        $('#' + screenId).fadeIn();
+        $('#' + screenId).show();
+    
+        // 2. On met à jour le menu (la classe active)
+        $('.nav-item').removeClass('active');
+        $(`.nav-item[onclick*="${screenId}"]`).addClass('active');
+    
+        // 3. ON REMPLIT L'ÉCRAN selon son ID
+        switch(screenId) {
+            case 'home':
+                this.renderCategories(); // Ta fonction qui affiche les catégories
+                break;
+                
+            case 'listing_mantras':
+                self.renderMantras(); // Ta fonction avec le shuffle
+                break;
+                
+            case 'listing_favorites':
+                self.showFavorites(); // Ta fonction pour les favoris
+                break;
+        }
+        
+        // On remonte en haut de page pour le confort
+        window.scrollTo(0, 0);
     },
 
     getPath: function() {
