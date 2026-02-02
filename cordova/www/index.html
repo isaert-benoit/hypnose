@@ -62,23 +62,32 @@
 
         <!-- Player -->
         <div id="player" class="screen" style="display: none;">
-            <div class="cta-return-sessions">← Retour</div>
             
-            <div id="details"></div>
-            
-            <div class="player-ui">
-                <div id="cta-fav" class="fav-icon">♡</div> </div>
-                <div class="progress-container">
-                    <input type="range" id="seek-slider" min="0" max="100" step="0.1" value="0">
-                    <div class="time-display">
-                        <span id="current-time">0:00</span>
-                        <span id="duration">-:-</span>
+            <div class="player-bg"></div>
+            <div class="player-overlay"></div>
+
+            <div class="player-content">
+
+                <div class="player-ui">
+
+                    <div class="icon-container">
+                        <i class="fa-solid fa-chevron-left cta-return-sessions"></i>
+                        <i id="cta-fav" class="fa-regular fa-heart"></i>
                     </div>
-                </div>
-        
-                <div class="player-control">
-                    <div class="cta-play">PLAY</div>
-                    <div class="cta-pause" style="display: none;">PAUSE</div>
+
+                    
+                    <div class="progress-container">
+                        <input class="player-slider" type="range" id="seek-slider" min="0" max="100" step="0.1" value="0">
+                        <div class="time-display">
+                            <span id="current-time">0:00</span>
+                            <span id="duration">-:-</span>
+                        </div>
+                    </div>
+            
+                    <div class="player-control">
+                        <div class="cta-play">PLAY</div>
+                        <div class="cta-pause" style="display: none;">PAUSE</div>
+                    </div>
                 </div>
             </div>
         </div>   
@@ -97,11 +106,6 @@
         </div>
 
         <!-- Bottom bar menu-->
-        <!-- <nav id="main-nav">
-            <div class="nav-item" id="nav-home">🏠<span>Home</span></div>
-            <div class="nav-item" id="nav-favorites">❤️<span>Favoris</span></div>
-            <div class="nav-item" id="nav-mantras">✨<span>Mantras</span></div>
-        </nav> -->
         <nav class="bottom-nav"> 
             <div class="nav-item active" data-screen="listing_categories">
                 <i class="fa-solid fa-house"></i>
@@ -115,10 +119,10 @@
                 <i class="fa-solid fa-yin-yang"></i>
                 <span>Mantras</span>
             </div>
-            <div class="nav-item" data-screen="listing_mantras">
+            <!-- <div class="nav-item" data-screen="listing_mantras">
                 <i class="fa-solid fa-bars"></i>
                 <span>Menu</span>
-            </div>
+            </div> -->
         </nav>
 
         <script src="cordova.js"></script>

@@ -9,7 +9,7 @@ var datas = {
                     "1": { 
                         "id": "bien-s-endormir", 
                         "name": "Bien s'endormir", 
-                        "duration": 45, 
+                        "duration": 18, 
                         "src": "sessions/1_1.ogg", 
                         "description": "Comme son titre l'indique, cet enregistrement est destiné à vous accompagner durant votre endormissement, soit pour vous aider à vous endormir, soit pour faire en sorte que votre nuit se passe bien. Vous avez juste à poser le casque sur vos oreilles... et laisser faire. Pas besoin d'écouter vraiment ou de chercher à comprendre, juste vous laisser bercer. L'accompagnement musical est minimal et, comme la voix, s'en ira progressivement afin de ne pas troubler votre sommeil" 
                     },
@@ -35,8 +35,8 @@ var datas = {
                         "description": "Même si beaucoup de choses sont expliquées, le texte n'est pas pour votre esprit conscient - donc, fermez les yeux et passez un bon moment, sans chercher à comprendre, ni même à écouter." 
                     },
                     "5": { 
-                        "id": "se-laisser-aller", 
-                        "name": "Se laisser aller", 
+                        "id": "la-force-vitale", 
+                        "name": "La force vitale", 
                         "duration": 29, 
                         "src": "sessions/1_5.ogg", 
                         "description": "L'idée est de se reconnecter aux forces vitales, puis de plonger dans un espace de ressourcement, afin de renforcer et d'accélérer la guérison du corps. Cet accompagnement a été pensé pour des problèmes physiques (maladies lourdes, effets négatifs liés au traitement médical, à la pollution, à l'irradiation, etc.). Il doit être possible de l'utiliser pour un problème d'ordre psychologique, mais ce n'est pas sa vocation première. Le fond sonore est lancinant, onirique, afin de vous bercer. Rien à faire, rien à penser, juste vous laisser faire. Allongez-vous ou installez-vous confortablement... et laissez aller." 
@@ -84,11 +84,11 @@ var datas = {
                 "name": "Développement de soi",
                 "description": "Atteignez votre plein potentiel.",
                 "sessions": {
-                    "1": { "id": "developper-intuition", "name": "Développer son Intuition", "duration": 23, "src": "sessions/3_.ogg", "description": "Ceci est un exemple d'induction hypnotique d'Hypnose Humaniste.L'introduction est suivie d'un exemple d'intervention thérapeutique symbolique simple." },
-                    "2": { "id": "histoire-vie", "name": "La Grande Histoire de la Vie", "duration": 46, "src": "sessions/3_.ogg", "description": "Ce n'est pas un type de séance à écouter tous les jours. Réservez-vous ce 'cadeau' pour des moments privilégiés ou si vous avez besoin de vous remonter le moral, de 'retrouver la foi'. Le piège a éviter est de vouloir ré-écouter la séance, encore et encore, parce qu'au fond de soi, on doute de réussir." },
-                    "3": { "id": "la-conscience", "name": "La Conscience", "duration": 39, "src": "sessions/3_.ogg", "description": "Ceci n'est pas une induction, mais la version audio d'un article d'Olivier Lockert, très apprécié, du site Hypnose-Humaniste.com" },
-                    "4": { "id": "createur-de-realite", "name": "Créateur de Réalité", "duration": 46, "src": "sessions/3_.ogg", "description": "A nouveau une 'version audio', cette fois-ci d'un conte destiné à présenter la vision de la Vie de l'Hypnose Humaniste, de ses origines et ses buts, à son devenir." },
-                    "5": { "id": "expansion-de-conscience", "name": "Expansion de conscience", "duration": 31, "src": "sessions/3_.ogg", "description": "Le domaine de l'intuition est bien plus vaste qu'il n'y parait à première vue. Les personnes en meilleure santé vivent et se nourrissent intuitivement mieux que les autres. Elles ne le font pas exprès. Un enfant mince n'aime pas les sauces, par exemple. Il ne l'a pas appris, il ne se force pas. Il est 'comme ça'… C'est la même chose pour une personne à qui 'tout réussi', qui a 'de la chance' : elle semble savoir à chaque fois quoi faire, et pourtant ce n'est ni conscient, ni volontaire… C'est cela, l'intuition : le ressenti profond qui guide vos pas, souvent même sans que vous ne le sachiez. C'est ce qu'il y a de plus important pour vivre bien et en bonne santé, pour réussir sa vie et suivre 'le chemin qui a du coeur'." }
+                    "1": { "id": "developper-intuition", "name": "Développer son Intuition", "duration": 23, "src": "sessions/3_1.ogg", "description": "Ceci est un exemple d'induction hypnotique d'Hypnose Humaniste.L'introduction est suivie d'un exemple d'intervention thérapeutique symbolique simple." },
+                    "2": { "id": "histoire-vie", "name": "La Grande Histoire de la Vie", "duration": 46, "src": "sessions/3_2.ogg", "description": "Ce n'est pas un type de séance à écouter tous les jours. Réservez-vous ce 'cadeau' pour des moments privilégiés ou si vous avez besoin de vous remonter le moral, de 'retrouver la foi'. Le piège a éviter est de vouloir ré-écouter la séance, encore et encore, parce qu'au fond de soi, on doute de réussir." },
+                    "3": { "id": "la-conscience", "name": "La Conscience", "duration": 39, "src": "sessions/3_3.ogg", "description": "Ceci n'est pas une induction, mais la version audio d'un article d'Olivier Lockert, très apprécié, du site Hypnose-Humaniste.com" },
+                    "4": { "id": "createur-de-realite", "name": "Créateur de Réalité", "duration": 46, "src": "sessions/3_4.ogg", "description": "A nouveau une 'version audio', cette fois-ci d'un conte destiné à présenter la vision de la Vie de l'Hypnose Humaniste, de ses origines et ses buts, à son devenir." },
+                    "5": { "id": "expansion-de-conscience", "name": "Expansion de conscience", "duration": 31, "src": "sessions/3_5.ogg", "description": "Le domaine de l'intuition est bien plus vaste qu'il n'y parait à première vue. Les personnes en meilleure santé vivent et se nourrissent intuitivement mieux que les autres. Elles ne le font pas exprès. Un enfant mince n'aime pas les sauces, par exemple. Il ne l'a pas appris, il ne se force pas. Il est 'comme ça'… C'est la même chose pour une personne à qui 'tout réussi', qui a 'de la chance' : elle semble savoir à chaque fois quoi faire, et pourtant ce n'est ni conscient, ni volontaire… C'est cela, l'intuition : le ressenti profond qui guide vos pas, souvent même sans que vous ne le sachiez. C'est ce qu'il y a de plus important pour vivre bien et en bonne santé, pour réussir sa vie et suivre 'le chemin qui a du coeur'." }
                 }
             }
         }

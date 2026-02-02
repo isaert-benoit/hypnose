@@ -358,9 +358,11 @@ const App = {
         const isFav = this.favorites.some(f => f.id === id);
         
         if (isFav) {
-            $('#cta-fav').html('❤️').addClass('active');
+            $('#cta-fav').removeClass('fa-regular');
+            $('#cta-fav').addClass('fa-solid');
         } else {
-            $('#cta-fav').html('♡').removeClass('active');
+            $('#cta-fav').removeClass('fa-solid');
+            $('#cta-fav').addClass('fa-regular');
         }
     },
 
@@ -401,7 +403,7 @@ const App = {
     
         // 2. On met à jour le menu (la classe active)
         $('.nav-item').removeClass('active');
-        $(`.nav-item[onclick*="${screenId}"]`).addClass('active');
+        $(`.nav-item[data-screen*="${screenId}"]`).addClass('active');
     
         // 3. ON REMPLIT L'ÉCRAN selon son ID
         switch(screenId) {
