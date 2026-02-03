@@ -50,12 +50,12 @@
         </div>
 
         <!-- Listing categories-->
-        <div id="listing_categories" class="screen">
+        <div id="listing_categories" class="screen" data-active-menu="playlist">
             <div id="categories"></div>
         </div>
 
         <!-- Listing sessions-->
-        <div id="listing_sessions" style="display: none;" class="screen">
+        <div id="listing_sessions" style="display: none;" class="screen" data-active-menu="playlist">
             <div class="cta-return-categories">Retour</div>
             <div id="sessions"></div>
         </div>
@@ -68,27 +68,27 @@
 
             <div class="player-content">
 
-                <div class="player-ui">
 
-                    <div class="icon-container">
+                    <div class="player-header">
                         <i class="fa-solid fa-chevron-left cta-return-sessions"></i>
                         <i id="cta-fav" class="fa-regular fa-heart"></i>
                     </div>
 
                     
-                    <div class="progress-container">
+                    <div class="player-info"></div>
+            
+                    <div class="player-control">
                         <input class="player-slider" type="range" id="seek-slider" min="0" max="100" step="0.1" value="0">
                         <div class="time-display">
                             <span id="current-time">0:00</span>
                             <span id="duration">-:-</span>
                         </div>
+                        <div class="cta-play-pause">
+                            <i class="fa-solid fa-circle-play cta-play"></i>
+                            <i class="fa-solid fa-circle-pause cta-pause" style="display: none;"></i>
+                        </div>
                     </div>
-            
-                    <div class="player-control">
-                        <div class="cta-play">PLAY</div>
-                        <div class="cta-pause" style="display: none;">PAUSE</div>
-                    </div>
-                </div>
+
             </div>
         </div>   
 
@@ -107,15 +107,15 @@
 
         <!-- Bottom bar menu-->
         <nav class="bottom-nav"> 
-            <div class="nav-item active" data-screen="listing_categories">
-                <i class="fa-solid fa-house"></i>
-                <span>Accueil</span>
+            <div class="nav-item active" data-screen="listing_categories" data-active-menu="listing_categories listing_sessions player">
+                <i class="fa-regular fa-headphones"></i>
+                <span>Playlist</span>
             </div>
-            <div class="nav-item" data-screen="listing_favorites">
+            <div class="nav-item" data-screen="listing_favorites" data-active-menu="listing_favorites">
                 <i class="fas fa-heart"></i>
                 <span>Favoris</span>
             </div>
-            <div class="nav-item" data-screen="listing_mantras">
+            <div class="nav-item" data-screen="listing_mantras" data-active-menu="listing_mantras">
                 <i class="fa-solid fa-yin-yang"></i>
                 <span>Mantras</span>
             </div>

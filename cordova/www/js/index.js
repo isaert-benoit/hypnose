@@ -195,7 +195,7 @@ const App = {
             }
         }
 
-        $('#details').html(`<h2>${this.currentSession.name}</h2><p>${this.currentSession.description || ''}</p>`);
+        $('#player .player-info').html(`<h2>${this.currentSession.name}</h2><p>${this.currentSession.description || ''}</p>`);
         this.updateFavUI();
         this.updatePlayerButtons();
         this.switchScreen('player');
@@ -403,7 +403,7 @@ const App = {
     
         // 2. On met à jour le menu (la classe active)
         $('.nav-item').removeClass('active');
-        $(`.nav-item[data-screen*="${screenId}"]`).addClass('active');
+        $(`.nav-item[data-active-menu*="${screenId}"]`).addClass('active');
     
         // 3. ON REMPLIT L'ÉCRAN selon son ID
         switch(screenId) {
