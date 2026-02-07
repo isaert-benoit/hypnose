@@ -11,6 +11,7 @@ var datas = {
                         "name": "Bien s'endormir", 
                         "duration": 18, 
                         "src": "sessions/1_1.ogg", 
+                        "img" : "img/session/1_1.jpg",
                         "description": "Comme son titre l'indique, cet enregistrement est destiné à vous accompagner durant votre endormissement, soit pour vous aider à vous endormir, soit pour faire en sorte que votre nuit se passe bien. Vous avez juste à poser le casque sur vos oreilles... et laisser faire. Pas besoin d'écouter vraiment ou de chercher à comprendre, juste vous laisser bercer. L'accompagnement musical est minimal et, comme la voix, s'en ira progressivement afin de ne pas troubler votre sommeil" 
                     },
                     "2": { 

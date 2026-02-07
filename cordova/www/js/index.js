@@ -110,8 +110,12 @@ const App = {
         $.each(this.currentCategory.sessions, (id, session) => {
             container.append(`
                 <div class="card session-item" data-id="${session.id}">
-                    <h4>${session.name}</h4>
-                    <p>${session.description}</p>
+                    <div style="background-image:url(${session.img})" class="img"></div>
+                    <div class="text-container">
+                        <h4>${session.name}</h4>
+                        <p>${session.description}</p>
+                    </div>
+                    <div class="duration">${session.duration} min</div>
                 </div>
             `);
         });
@@ -376,8 +380,12 @@ const App = {
             this.favorites.forEach(fav => {
                 container.append(`
                     <div class="card fav-item" data-id="${fav.id}" data-cat="${fav.category}">
-                        <h4>${fav.name}</h4>
-                        <p>${fav.description}</p>
+                        <div class=""><img src="" /></div>
+                        <div class="">
+                            <h4>${fav.name}</h4>
+                            <p>${fav.description}</p>
+                        </div>
+                        <div class="duration">${fav.duration}</div>
                     </div>
                 `);
             });

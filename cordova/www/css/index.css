@@ -20,41 +20,51 @@ main, .page-content {
     padding-bottom: 80px !important; 
 }
 
+
+/** LISTING PAGE */
 .card {
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(10px);
     border-radius: 15px;
-    padding: 20px;
+    padding: 15px;
     margin-bottom: 15px;
     border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.cta-play,.cta-pause {
-    text-align: center;
-    font-size: 4rem;
-    color: white;
-    opacity: .8;
-}
-
-.progress-container {
-    width: 80%;
-    margin: 30px auto;
-}
-
-#seek-slider {
-    width: 100%;
-    cursor: pointer;
-    accent-color: #a29bfe; /* Curseur blanc sur fond dégradé */
-}
-
-.time-display {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
-    font-size: 12px;
-    opacity: 0.7;
-    margin-top: 5px;
+    
 }
+.card .text-container{
 
+}
+.card .text-container h4{
+    margin:0;
+    padding:0;
+    
+}
+.card .text-container p{
+    margin:0;
+    padding:0;
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;    
+}
+.card .icon-play{
+    display: -webkit-box; /* Specify that we want to use webkit-box */
+    -webkit-box-orient: vertical; /* Indicate the text direction */
+    -webkit-line-clamp: 3; /* Set the desired number of lines */
+    overflow: hidden; 
+}
+.card .img{
+    height: 50px;
+    width: 50px;
+    border-radius: 10px;
+    background-size: contain;
+}
+.card .duration{
+
+}
 
 
 /** SCREEN PLAYER */
@@ -169,6 +179,32 @@ main, .page-content {
     justify-content: center;
     margin:10px 0;
 }
+.cta-play,.cta-pause {
+    text-align: center;
+    font-size: 4rem;
+    color: white;
+    opacity: .8;
+}
+
+.progress-container {
+    width: 80%;
+    margin: 30px auto;
+}
+
+#seek-slider {
+    width: 100%;
+    cursor: pointer;
+    accent-color: #a29bfe; /* Curseur blanc sur fond dégradé */
+}
+
+.time-display {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    opacity: 0.7;
+    margin-top: 5px;
+}
+
 
 /** MENU bas */
 .bottom-nav {
@@ -214,7 +250,7 @@ main, .page-content {
 
 
 .nav-item span {
-    font-size: 0.65rem;
+    font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
